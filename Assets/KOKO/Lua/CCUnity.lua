@@ -1,8 +1,9 @@
 local _G = _G
 local CC = require("CC")
+local Json = require "cjson"
 
 module "CCUnity"
-CCUnity = {}
+CCUnity = {Json = {}, CS = {}}
 function CCUnity:SendWeb(kURL, tVal, kCallBack, kCallBack2) 
     tVal.appKey = tVal.appKey or Player.appKey
     tVal.uid = tVal.uid or Player.uid
@@ -20,4 +21,17 @@ function CCUnity:SendWeb(kURL, tVal, kCallBack, kCallBack2)
     end
     Print("ClientW << "..kURL..Table:ToString(tVal))
     kk.ql.httpPost(require("config").webHost .. kURL, tVal, LF_CallBack)
+end
+
+function CCUnity.CS.ServerWeb(kString)
+    local tVal = CCUnity.Json:Decode(kString)
+    CC.Print(tVal.message)
+    CC.Print(CC.Table:ToString(tVal))
+end
+
+function CCUnity.Json:Encode(kTemp)
+    return Json.encode(kTemp)
+end
+function CCUnity.Json:Decode(kTemp)
+    return Json.decode(kTemp)
 end

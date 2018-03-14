@@ -1,4 +1,4 @@
-require ("mobdebug").start()
+--require ("mobdebug").start()
 ----------------------------------------------------------------
 local _G = _G
 local CC = require("CC")

@@ -25,6 +25,8 @@ namespace CC
                 byte[] acTemp2 = tablegen2.GzipHelper.processGZipDecode(acTemp1);
                 string kJson = System.Text.Encoding.UTF8.GetString(acTemp2);
                 //JsonUtility.FromJson(kJson);
+
+                LuaMain.Instance.Call_String("CC.CS.ServerWeb", kJson);
             });
         }
     }

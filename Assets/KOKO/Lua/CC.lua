@@ -3,6 +3,7 @@ module ("CC", package.seeall)
 -- Menu
 ----------------------------------------------------------------
 -- Functions
+-- Table
 
 ----------------------------------------------------------------
 
@@ -181,4 +182,73 @@ function ClassFunction(kClass, kFunc)
         return kFuncTemp(...)
     end
     return LF_Action
+end
+
+-----------------------------------------------------------------------------------
+-- Table
+Table = {}
+function Table:Vector(tVal)
+    local tTemp = {}
+    for k,v in pairs(tVal) do
+        table.insert(tTemp, {Key = k, Value = v})
+    end
+    table.sort(tTemp, function (a,b)
+        return a.Key < b.Key
+    end)
+    return tTemp
+end
+function Table:Insert(...)
+    return table.insert(...)
+end
+function Table:ToString(tVal)
+    local kString = tVal
+    if type(tVal) == "table" then
+        kString = "{ "
+        local bFirst = true
+        for k,v in pairs(tVal) do
+            if not bFirst then
+                kString = kString..", "
+            else
+                bFirst = false
+            end
+            if type(v) == "boolean" then
+                v = v and "true" or "false"
+            end
+            kString = kString..self:ToString(k).." = "..self:ToString(v).." "
+        end
+        kString = kString.."}"
+    else
+        kString = ToString(kString)
+    end
+    return kString
+end
+function Table:At(tVal, kVal, tDefault)
+    local kRt = rawget(tVal, kVal)
+    if not kRt then
+        kRt = tDefault or {}
+        rawset(tVal, kVal, kRt)
+    end
+    return kRt
+end
+function Table:Empty(tVal)
+    for k,v in pairs(tVal) do
+        return false
+    end
+    return true
+end
+function Table:Append(tVal, tAppend)
+    if tVal and tAppend then
+        for i,v in _G.ipairs(tAppend) do
+            table.insert(tVal, v)
+        end
+    end
+end
+function Table:Inverse(tVal)
+    if tVal then
+        local tTemp = {}
+        for k,v in _G.pairs(tVal) do
+            tTemp[v] = k
+        end
+        return tTemp
+    end
 end
