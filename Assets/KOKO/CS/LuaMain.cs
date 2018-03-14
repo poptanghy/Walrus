@@ -20,6 +20,7 @@ namespace CC
             string fullPath = Application.dataPath + "\\KOKO/Lua";
             lua.AddSearchPath(fullPath);
             lua.Require("LuaMain");
+            Net.SendWeb();
         }
 
         void Log(string msg, string stackTrace, LogType type)

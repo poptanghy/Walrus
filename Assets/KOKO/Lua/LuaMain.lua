@@ -1,3 +1,5 @@
+require ("mobdebug").start()
+----------------------------------------------------------------
 local _G = _G
 local CC = require("CC")
 local CCUnity = require("CCUnity").CCUnity

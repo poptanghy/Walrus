@@ -318,7 +318,7 @@
     <Compile Include="Assets\CC\HttpClient\HttpContent\StringContent.cs" />
     <Compile Include="Assets\CC\HttpClient\Messages\HttpResponseMessage.cs" />
     <Compile Include="Assets\CC\HttpClient\Messages\UploadStatusMessage.cs" />
-    <Compile Include="Assets\CC\Lua.cs" />
+    <Compile Include="Assets\CC\Net.cs" />
     <Compile Include="Assets\KOKO\CS\LuaMain.cs" />
     <Compile Include="Assets\KOKO\CS\TestTcpClient.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\Common\LuaBehaviour.cs" />
